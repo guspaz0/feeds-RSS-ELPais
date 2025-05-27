@@ -1,4 +1,5 @@
 import UserRepository from "../repository/user.repository";
+import { HttpStatusCode } from '../types/httpStatusCodes'
 
 class UserService {
   async getUsers() {

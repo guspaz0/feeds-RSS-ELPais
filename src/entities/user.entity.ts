@@ -3,8 +3,16 @@ import { IUser } from "../interfaces/IMongooseDocument";
 import mongoosePaginate from 'mongoose-paginate-v2'
 
 const userSchema: Schema<IUser> = new Schema({
-    name: String,
-    email: String
+    name: {
+      type: String,
+      required: [true, "Name is required!"],
+      minlength: [3, "Name must be at least 3 characters long!"]
+    },
+    email: {
+      type: String,
+      required: [true, "Email is required!"],
+      match: [/^\S+@\S+\.\S+$/, "Invalid email format!"]
+    }
 },{
     toJSON: {
         transform: (doc, ret) => {

@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { setUpRoutes } from './routes'
+import ErrorMiddleware from './middlewares/errorhandler.middleware'
 
 const app = express()
 app.use(cors({
@@ -9,5 +10,7 @@ app.use(cors({
 }))
 
 setUpRoutes(app)
+
+app.use(ErrorMiddleware)
 
 export default app

@@ -28,12 +28,17 @@
 │   ├── config/         # App, Db, configs
 │   ├── controllers/    # Controllers
 │   ├── entities/       # Mongo DB Schemas 
+│   ├── exceptions/     # Exception handlers
 │   ├── routes/         # Routes, api endpoints for this proyect
 │   ├── services/       # Service layer
+│   ├── middlewares/    # Middlewares
 │   ├── repository/     # Mongo DB Models
 │   ├── interfaces/     # Interface methods for repository and others
 │   ├── types/          # Types declarations, local and globals
-│   └── utils/          # Utilities
+│   ├── utils/          # Utilities
+│   ├── app             # App modules integrations
+│   ├── global          # global types declarations
+│   └── index           # App entrypoint
 ├── tests/              # Test cases
 ├── docker-compose.yml  # Script to initialize docker containers for the app
 ├── .env                # Environment variable file
