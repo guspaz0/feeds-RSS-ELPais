@@ -3,7 +3,7 @@ services:
   document-db:
     image: mongo:6.0.4
     restart: always
-    container_name: rss-feeds-document
+    container_name: rss_feeds_document
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}

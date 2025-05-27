@@ -8,4 +8,4 @@ db.createUser({
             },
         ],
     });
-db.createCollection('app_rssfeeds', { capped: false });
+db.createCollection('news', { capped: false });

@@ -1,7 +1,12 @@
-import express, { Router, Request, Response, NextFunction } from 'express'
+import express from 'express'
+import cors from 'cors'
 import { setUpRoutes } from './routes'
 
 const app = express()
+app.use(cors({
+    origin: true,
+    credentials: true
+}))
 
 setUpRoutes(app)
 
