@@ -17,6 +17,6 @@ const NewsSchema: Schema<INews> = new Schema({
         type: Date,
         default: Date.now()
     }
-})
+}).plugin(mongoosePaginate)
 
-export default NewsSchema.plugin(mongoosePaginate);
+export default NewsSchema;

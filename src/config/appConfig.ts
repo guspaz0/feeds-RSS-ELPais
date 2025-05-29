@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import { SECCION } from '../types/secciones'
 
 export const appConfig = {
     server: {
@@ -11,6 +12,6 @@ export const appConfig = {
         host: process.env.MONGO_HOST
     },
     endpoints: {
-        elPais: process.env.FEEDS_ELPAIS
+        elPais: (seccion: SECCION)=> process.env.FEEDS_ELPAIS+SECCION[seccion]+"/portada"
     }
 }

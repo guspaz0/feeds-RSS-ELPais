@@ -5,7 +5,7 @@ import { parseStringPromise } from 'xml2js';
 
 export async function fetchData(seccion: SECCION) {
     try {
-        const res = await fetch(appConfig.endpoints.elPais+SECCION[seccion]+"/portada")
+        const res = await fetch(appConfig.endpoints.elPais(seccion))
         if (res.ok) { 
             const xmlData = await res.text()
             const data = await convertXmlToJson(xmlData)

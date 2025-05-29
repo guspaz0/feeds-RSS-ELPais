@@ -1,0 +1,501 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Noticias",
+    "description": "API REST para noticias",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/api/v1",
+      "description": "API v1"
+    }
+  ],
+  "paths": {
+    "/api/v1/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "api/v1/news/": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "retorna lista de noticias almacenadas",
+        "description": "Some description...",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pageResponseNews"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "api/v1/news/fetch": {
+      "post": {
+        "tags": [
+          "News"
+        ],
+        "summary": "Ingesta de noticias ",
+        "description": "",
+        "parameters": [
+          {
+            "name": "seccion",
+            "in": "query",
+            "description": "Seccion de noticias que se desea ingestar",
+            "schema": {
+              "$ref": "#/components/schemas/seccion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pageResponseNews"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "api/v1/news/search": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "busca y retorna lista de noticias almacenadas",
+        "description": "Some description...",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/title"
+          },
+          {
+            "$ref": "#/components/parameters/category"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pageResponseNews"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "api/v1/news/{id}": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "buscar noticia almacenada por ID",
+        "description": "Retorna una noticia por su ID o devuelve un error",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/News"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "News"
+        ],
+        "summary": "buscar y Eliminar noticia almacenada por ID",
+        "description": "Retorna y ELIMINA una noticia por su ID o devuelve un error",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/News"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "News": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "123456"
+          },
+          "title": {
+            "type": "string",
+            "example": "noticia tendencia"
+          },
+          "pubDate": {
+            "type": "string",
+            "example": "2025-05-26T00:00:00.000Z"
+          },
+          "link": {
+            "type": "string",
+            "example": "https://elpais.com/noticia.html"
+          },
+          "description": {
+            "type": "string",
+            "example": "Detalle de noticia tendencia"
+          },
+          "category": {
+            "type": "array",
+            "example": [
+              "palabra clave"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "media_content": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "example": "url a una imagen"
+              },
+              "type": {
+                "type": "string",
+                "example": "image/jpeg"
+              },
+              "medium": {
+                "type": "string",
+                "example": "image"
+              }
+            }
+          },
+          "section": {
+            "type": "string",
+            "example": "argentina"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2025-05-27T00:00:00.000Z"
+          }
+        }
+      },
+      "pageResponseNews": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 20
+          },
+          "total": {
+            "type": "number",
+            "example": 6
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "123456"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "noticia tendencia"
+                },
+                "pubDate": {
+                  "type": "string",
+                  "example": "2025-05-26T00:00:00.000Z"
+                },
+                "link": {
+                  "type": "string",
+                  "example": "https://elpais.com/noticia.html"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Detalle de noticia tendencia"
+                },
+                "category": {
+                  "type": "array",
+                  "example": [
+                    "palabra clave"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "media_content": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "example": "url a una imagen"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "image/jpeg"
+                    },
+                    "medium": {
+                      "type": "string",
+                      "example": "image"
+                    }
+                  }
+                },
+                "section": {
+                  "type": "string",
+                  "example": "argentina"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2025-05-27T00:00:00.000Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "errorResponse": {
+        "type": "object",
+        "properties": {
+          "succeed": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "example": "Mensaje que hace referencia para indentificar el error"
+          }
+        }
+      },
+      "seccion": {
+        "default": "argentina",
+        "type": "string",
+        "enum": [
+          "economia",
+          "tecnologia",
+          "argentina",
+          "deportes"
+        ]
+      }
+    },
+    "parameters": {
+      "page": {
+        "name": "page",
+        "in": "query",
+        "description": "pagina actual",
+        "schema": {
+          "type": "integer",
+          "default": 1
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "resultados por pagina",
+        "schema": {
+          "type": "integer",
+          "default": 20
+        }
+      },
+      "title": {
+        "name": "title",
+        "in": "query",
+        "description": "busqueda por titulo",
+        "schema": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "category": {
+        "name": "category",
+        "in": "query",
+        "description": "busqueda por categoria",
+        "schema": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "from": {
+        "name": "from",
+        "in": "query",
+        "description": "buscar por fecha de inicio",
+        "schema": {
+          "type": "date",
+          "default": ""
+        }
+      },
+      "to": {
+        "name": "to",
+        "in": "query",
+        "description": "buscar por fecha final",
+        "schema": {
+          "type": "date",
+          "default": ""
+        }
+      }
+    }
+  }
+}
